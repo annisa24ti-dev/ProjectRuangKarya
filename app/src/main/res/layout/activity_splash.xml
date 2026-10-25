@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="@color/cream">
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:contentDescription="Logo RuangKarya"
+        android:src="@drawable/logoruangkarya" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="RuangKarya"
+        android:textColor="@color/terracotta"
+        android:textSize="30sp"
+        android:fontFamily="@font/poppinsbold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Ruang untuk karya lokal tumbuh dan ditemukan."
+        android:textColor="@color/charcoal"
+        android:textSize="14sp"
+        android:fontFamily="@font/poppinsregular" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="238dp"
+        android:layout_height="92dp" />
+
+</LinearLayout>
