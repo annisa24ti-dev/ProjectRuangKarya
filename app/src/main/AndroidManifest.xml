@@ -11,7 +11,7 @@
         android:label="RuangKarya"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Pertemuan4">
+        android:theme="@style/Theme.RuangKarya">
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -37,7 +37,14 @@
         <activity
             android:name=".pertemuan_5.WebViewActivity"
             android:exported="false" />
+        <activity
+            android:name=".Home.pertemuan9.NinthActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Home.pertemuan9.TutorialActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
-
 
 </manifest>

@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.pertemuan4"
+    namespace = "com.example.ruangkarya"
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.example.pertemuan4"
+        applicationId = "com.example.ruangkarya"
         minSdk = 29
         targetSdk = 37
         versionCode = 1
@@ -46,4 +46,6 @@ dependencies {
 
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
+
+    implementation("com.tbuonomo:dotsindicator:5.0")
 }

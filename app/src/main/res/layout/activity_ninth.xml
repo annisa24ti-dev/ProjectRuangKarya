@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/terracotta"
+            app:title="Pertemuan 9"
+            app:titleTextColor="@color/cream" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 1. FORM INPUT MATERIAL -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Form Input Material:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/charcoal"
+                android:layout_marginBottom="8dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nama Pelanggan"
+                app:counterEnabled="true"
+                app:counterMaxLength="20"
+                app:helperText="Masukkan nama lengkap"
+                app:startIconDrawable="@drawable/ic_edit">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/terracotta"
+                android:textColor="@color/cream"
+                android:text="Simpan Data"
+                app:icon="@drawable/ic_login" />
+
+            <!-- 2. EDITTEXT BERSUDUT MEMBULAT (Tahap 3 Modul) -->
+            <EditText
+                android:id="@+id/etPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_rounded_container"
+                android:hint="Nomor Telepon"
+                android:inputType="phone" />
+
+            <!-- 3. CHIP GROUP (Tahap 2 Modul) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pilih Kategori Produk (ChipGroup):"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/charcoal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipBaju"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Pakaian" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCelana"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Celana" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAksesoris"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aksesoris" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- 4. GRID LAYOUT (Tahap 4 Modul) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Menu Navigasi (GridLayout 3 Kolom):"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/charcoal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp" />
+
+            <GridLayout
+                android:id="@+id/gridLayoutMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:useDefaultMargins="true">
+
+                <Button
+                    android:id="@+id/btnMenu1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:backgroundTint="@color/terracotta"
+                    android:text="Katalog" />
+
+                <Button
+                    android:id="@+id/btnMenu2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:backgroundTint="@color/terracotta"
+                    android:text="Promo" />
+
+                <Button
+                    android:id="@+id/btnMenu3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:backgroundTint="@color/terracotta"
+                    android:text="Pesanan" />
+
+                <Button
+                    android:id="@+id/btnMenu4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:backgroundTint="@color/terracotta"
+                    android:text="Favorit" />
+
+                <Button
+                    android:id="@+id/btnMenu5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:backgroundTint="@color/terracotta"
+                    android:text="Voucher" />
+
+                <Button
+                    android:id="@+id/btnMenu6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:backgroundTint="@color/terracotta"
+                    android:text="Bantuan" />
+            </GridLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
