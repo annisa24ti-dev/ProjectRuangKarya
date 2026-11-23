@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Permission Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,39 +13,61 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RuangKarya">
+
+        <!-- Splash Screen -->
         <activity
             android:name=".SplashActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <!-- Login -->
         <activity
             android:name=".LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- Main Activity -->
         <activity
             android:name=".BaseActivity"
             android:exported="false" />
+
+        <!-- Detail Activity -->
         <activity
             android:name=".DetailActivity"
             android:exported="false" />
+
+        <!-- Pertemuan 5 -->
         <activity
             android:name=".pertemuan_5.LimaActivity"
             android:exported="false" />
+
         <activity
             android:name=".pertemuan_5.WebViewActivity"
             android:exported="false" />
+
+        <!-- Tutorial -->
         <activity
-            android:name=".Home.pertemuan9.NinthActivity"
+            android:name=".home.tutorial.NinthActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
         <activity
-            android:name=".Home.pertemuan9.TutorialActivity"
+            android:name=".home.tutorial.TutorialActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- Room Database: Form Tambah Karya -->
+        <activity
+            android:name=".karya.KaryaFormActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
     </application>
 
 </manifest>

@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Message.MessageFragment"
+    tools:context=".message.MessageFragment"
     android:background="@color/cream">
 
     <com.google.android.material.appbar.AppBarLayout
         android:fontFamily="@font/poppinsregular"
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 

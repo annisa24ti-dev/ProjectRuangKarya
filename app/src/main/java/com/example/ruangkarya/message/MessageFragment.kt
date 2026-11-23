@@ -1,4 +1,4 @@
-package com.example.ruangkarya.Message
+package com.example.ruangkarya.message
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import com.example.ruangkarya.Home.pertemuan9.TutorialActivity
+import com.example.ruangkarya.home.tutorial.TutorialActivity
 import com.example.ruangkarya.R
 import com.example.ruangkarya.databinding.FragmentMessageBinding
 
@@ -47,7 +47,7 @@ class MessageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
-        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Message"
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Pesan"
 
         // Pasang Menu Info via MenuProvider sesuai modul Halaman 17-18
         requireActivity().addMenuProvider(object : MenuProvider {

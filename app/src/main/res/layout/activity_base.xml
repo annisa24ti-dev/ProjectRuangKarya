@@ -10,6 +10,17 @@
     tools:context=".BaseActivity"
     android:background="@color/cream">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mainToolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/terracotta"
+        app:title="RuangKarya"
+        app:titleTextColor="@color/cream"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <FrameLayout
         android:fontFamily="@font/poppinsregular"
         android:id="@+id/fragment_container"
@@ -18,7 +29,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/mainToolbar" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:fontFamily="@font/poppinsbold"

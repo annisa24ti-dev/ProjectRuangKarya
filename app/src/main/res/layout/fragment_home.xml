@@ -1,182 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/cream"
-    tools:context=".Home.HomeFragment"
-    android:fontFamily="@font/poppinsregular">
+    tools:context=".home.HomeFragment">
 
-    <!-- Background Wave Header -->
-    <View
-        android:id="@+id/viewHeaderWave"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:background="@drawable/bg_header_wave"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:background="@drawable/bg_header_wave">
 
-    <!-- Toolbar Transparan di Atas Wave -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
-        app:title="RuangKarya"
-        app:titleTextColor="@android:color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Container Scrollable agar konten tidak terpotong di layar mana pun -->
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/viewHeaderWave"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingHorizontal="24dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="32dp">
+            android:text="RuangKarya"
+            android:textColor="@android:color/white"
+            android:textSize="25sp"
+            android:fontFamily="@font/poppinsbold" />
 
-            <TextView
-                android:id="@+id/tvWelcome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppinsbold"
-                android:text="RUANG KARYA"
-                android:textColor="@color/terracotta"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tvGreeting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Selamat datang!"
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppinsregular" />
 
-            <TextView
-                android:id="@+id/txtUsername"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:fontFamily="@font/poppinsregular"
-                android:text="Temukan dan kembangkan kreativitasmu"
-                android:textColor="@color/charcoal"
-                android:textSize="16sp" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/txtPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/poppinsregular"
-                android:text="Jelajahi karya lokal dan dukung kreativitas Indonesia."
-                android:textColor="@color/charcoal"
-                android:textSize="14sp" />
+    <Button
+        android:id="@+id/btnExploreComponents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="4dp"
+        android:text="Jelajahi fitur"
+        android:textAllCaps="false"
+        android:textColor="@color/cream"
+        android:backgroundTint="@color/sage"
+        android:fontFamily="@font/poppinssemibold" />
 
-            <!-- Card Project -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardProject"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@color/beige"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="Temukan Karya Lokal"
+        android:textColor="@color/charcoal"
+        android:textSize="18sp"
+        android:fontFamily="@font/poppinsbold" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayoutCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cream"
+        app:tabIndicatorColor="@color/terracotta"
+        app:tabSelectedTextColor="@color/terracotta"
+        app:tabTextColor="@color/charcoal"
+        app:tabMode="fixed"
+        app:tabGravity="fill" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppinsbold"
-                        android:text="Karya Lokal, Inspirasi Tanpa Batas"
-                        android:textColor="@color/charcoal"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerProducts"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="10dp"
+        android:paddingBottom="12dp"
+        android:clipToPadding="false"
+        tools:listitem="@layout/item_product" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="@font/poppinsregular"
-                        android:text="Temukan karya kreatif dan dukung para kreator lokal Indonesia."
-                        android:textColor="@color/charcoal"
-                        android:textSize="14sp" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Tombol Aksi (Semua Ukuran & Font Seragam) -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnDetail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="@color/terracotta"
-                android:fontFamily="@font/poppinsbold"
-                android:text="Jelajahi Karya"
-                android:textColor="@color/cream" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSnackBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="@color/terracotta"
-                android:fontFamily="@font/poppinsbold"
-                android:text="Notifikasi"
-                android:textColor="@color/cream" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnWebView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="@color/terracotta"
-                android:fontFamily="@font/poppinsbold"
-                android:text="Buka Web RuangKarya"
-                android:textColor="@color/cream" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnPertemuan5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="@color/terracotta"
-                android:fontFamily="@font/poppinsbold"
-                android:text="Fitur Pertemuan 5"
-                android:textColor="@color/cream" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnPertemuan9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="@color/terracotta"
-                android:fontFamily="@font/poppinsbold"
-                android:text="Pertemuan 9 (Chip &amp; Grid)"
-                android:textColor="@color/cream" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnLogout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="@color/terracotta"
-                android:fontFamily="@font/poppinsbold"
-                android:text="Logout"
-                android:textColor="@color/cream" />
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

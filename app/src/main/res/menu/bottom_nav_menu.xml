@@ -4,16 +4,21 @@
     <item
         android:id="@+id/home"
         android:icon="@drawable/ic_home"
-        android:title="Home" />
+        android:title="Beranda" />
 
     <item
         android:id="@+id/message"
         android:icon="@drawable/ic_message"
-        android:title="Message" />
+        android:title="Pesan" />
+
+    <item
+        android:id="@+id/karya"
+        android:icon="@drawable/ic_karya"
+        android:title="Karya" />
 
     <item
         android:id="@+id/more"
         android:icon="@drawable/ic_more"
-        android:title="More" />
+        android:title="Profil" />
 
 </menu>

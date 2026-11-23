@@ -1,5 +1,4 @@
-
-package com.example.ruangkarya.Home
+package com.example.ruangkarya.home
 
 import android.content.Context
 import android.content.Intent
@@ -7,118 +6,134 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.ruangkarya.DetailActivity
-import com.example.ruangkarya.Home.pertemuan9.NinthActivity
-import com.example.ruangkarya.LoginActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ruangkarya.databinding.FragmentHomeBinding
-import com.example.ruangkarya.pertemuan_5.LimaActivity
-import com.example.ruangkarya.pertemuan_5.WebViewActivity
-import com.google.android.material.snackbar.Snackbar
+import com.example.ruangkarya.home.tutorial.NinthActivity
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var productAdapter: ProductAdapter
+
+    private val productList = listOf(
+        ProductModel("Vas Keramik", "Kriya", "Rp89.000", "🏺"),
+        ProductModel("Tas Anyaman", "Fashion", "Rp125.000", "👜"),
+        ProductModel("Batik Lokal", "Fashion", "Rp150.000", "👘"),
+        ProductModel("Gelang Handmade", "Kriya", "Rp35.000", "📿"),
+        ProductModel("Keripik Pisang", "Kuliner", "Rp20.000", "🍌"),
+        ProductModel("Kue Tradisional", "Kuliner", "Rp30.000", "🍪"),
+        ProductModel("Tempat Pensil Rotan", "Kriya", "Rp45.000", "🧺"),
+        ProductModel("Dompet Kain", "Fashion", "Rp65.000", "👛")
+    )
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        _binding = FragmentHomeBinding.inflate(
+            inflater,
+            container,
+            false
+        )
+
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
-        (requireActivity() as AppCompatActivity)
-            .setSupportActionBar(binding.toolbar)
+        setupGreeting()
+        setupRecyclerView()
+        setupTabLayout()
 
-        (requireActivity() as AppCompatActivity)
-            .supportActionBar?.title = "RuangKarya"
+        binding.btnExploreComponents.setOnClickListener {
+            startActivity(Intent(requireContext(), NinthActivity::class.java))
+        }
+    }
 
+    private fun setupGreeting() {
         val sharedPref = requireContext().getSharedPreferences(
             "user_pref",
             Context.MODE_PRIVATE
         )
 
         val username = sharedPref.getString("username", "Pengguna")
-        binding.tvWelcome.text = "Halo, $username"
 
+        binding.tvGreeting.text = "Selamat datang, $username!"
+    }
 
-        binding.btnDetail.setOnClickListener {
-            val intent = Intent(
-                requireContext(),
-                DetailActivity::class.java
-            )
+    private fun setupRecyclerView() {
 
-            intent.putExtra("judul", "Rosela Fashion")
-            intent.putExtra(
-                "deskripsi",
-                "Ruang Karya menyediakan beragam jenis pakaian " +
-                        "yang fashionable dan up to date."
-            )
-
+        productAdapter = ProductAdapter(productList) { product ->
+            val intent = Intent(requireContext(), DetailActivity::class.java).apply {
+                putExtra("judul", product.name)
+                putExtra(
+                    "deskripsi",
+                    "Kategori: ${product.category}\nHarga: ${product.price}\n\nProduk ini merupakan salah satu karya lokal yang ditampilkan di RuangKarya."
+                )
+            }
             startActivity(intent)
         }
 
-        // Tombol Notifikasi menampilkan Snackbar
-        binding.btnSnackBar.setOnClickListener {
-            Snackbar.make(
-                binding.root,
-                "Selamat datang di RuangKarya!",
-                Snackbar.LENGTH_SHORT
-            ).show()
+        binding.recyclerProducts.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = productAdapter
+            setHasFixedSize(true)
         }
+    }
 
-        // Tombol WebView membuka halaman WebView
-        binding.btnWebView.setOnClickListener {
-            startActivity(
-                Intent(requireContext(), WebViewActivity::class.java)
+    private fun setupTabLayout() {
+
+        val categories = listOf(
+            "Semua",
+            "Kriya",
+            "Fashion",
+            "Kuliner"
+        )
+
+        categories.forEach { category ->
+            binding.tabLayoutCategory.addTab(
+                binding.tabLayoutCategory.newTab().setText(category)
             )
         }
 
-        // Tombol Pertemuan 5 membuka LimaActivity
-        binding.btnPertemuan5.setOnClickListener {
-            startActivity(
-                Intent(requireContext(), LimaActivity::class.java)
-            )
-        }
+        binding.tabLayoutCategory.addOnTabSelectedListener(
+            object : com.google.android.material.tabs.TabLayout.OnTabSelectedListener {
 
-        // Tombol Pertemuan 9
-        binding.btnPertemuan9.setOnClickListener {
-            startActivity(Intent(requireContext(), NinthActivity::class.java))
-        }
+                override fun onTabSelected(
+                    tab: com.google.android.material.tabs.TabLayout.Tab?
+                ) {
+                    val selectedCategory = tab?.text.toString()
 
-        // Tombol Logout menampilkan konfirmasi
-        binding.btnLogout.setOnClickListener {
-            AlertDialog.Builder(requireContext())
-                .setTitle("Logout")
-                .setMessage("Apakah Anda yakin ingin keluar?")
-                .setPositiveButton("Ya") { dialog, _ ->
-                    sharedPref.edit().clear().apply()
-                    dialog.dismiss()
+                    val filteredProducts = if (selectedCategory == "Semua") {
+                        productList
+                    } else {
+                        productList.filter {
+                            it.category == selectedCategory
+                        }
+                    }
 
-                    val intent = Intent(
-                        requireContext(),
-                        LoginActivity::class.java
-                    )
-
-                    intent.flags =
-                        Intent.FLAG_ACTIVITY_NEW_TASK or
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK
-
-                    startActivity(intent)
+                    productAdapter.updateData(filteredProducts)
                 }
-                .setNegativeButton("Batal") { dialog, _ ->
-                    dialog.dismiss()
-                }
-                .show()
-        }
+
+                override fun onTabUnselected(
+                    tab: com.google.android.material.tabs.TabLayout.Tab?
+                ) {}
+
+                override fun onTabReselected(
+                    tab: com.google.android.material.tabs.TabLayout.Tab?
+                ) {}
+            }
+        )
     }
 
     override fun onDestroyView() {

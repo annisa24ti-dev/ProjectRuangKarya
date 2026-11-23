@@ -1,4 +1,4 @@
-package com.example.ruangkarya.Message
+package com.example.ruangkarya.message
 
 data class MessageModel(
     val senderName: String,

@@ -6,10 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import com.example.ruangkarya.Home.HomeFragment
-import com.example.ruangkarya.More.MoreFragment
 import com.example.ruangkarya.databinding.ActivityBaseBinding
-import com.example.ruangkarya.Message.MessageFragment
+import com.example.ruangkarya.home.HomeFragment
+import com.example.ruangkarya.message.MessageFragment
+import com.example.ruangkarya.profile.MoreFragment
+import com.example.ruangkarya.karya.KaryaFragment
 
 class BaseActivity : AppCompatActivity() {
 
@@ -21,27 +22,34 @@ class BaseActivity : AppCompatActivity() {
         binding = ActivityBaseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(
-            findViewById(R.id.main)
-        ) { v, insets ->
-            val systemBars =
-                insets.getInsets(WindowInsetsCompat.Type.systemBars())
+        setSupportActionBar(binding.mainToolbar)
+        supportActionBar?.title = "RuangKarya"
 
-            v.setPadding(
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+
+            val systemBars = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars()
+            )
+
+            view.setPadding(
                 systemBars.left,
                 systemBars.top,
                 systemBars.right,
                 0
             )
+
             insets
         }
 
-        // Menampilkan HomeFragment saat halaman dibuka
-        replaceFragment(HomeFragment())
+        if (savedInstanceState == null) {
+            replaceFragment(HomeFragment())
+            binding.bottomNavView.selectedItemId = R.id.home
+        }
 
-        // Navigasi Bottom Navigation
-        binding.bottomNavView.setOnItemSelectedListener {
-            when (it.itemId) {
+        binding.bottomNavView.setOnItemSelectedListener { item ->
+
+            when (item.itemId) {
+
                 R.id.home -> {
                     replaceFragment(HomeFragment())
                     true
@@ -49,6 +57,11 @@ class BaseActivity : AppCompatActivity() {
 
                 R.id.message -> {
                     replaceFragment(MessageFragment())
+                    true
+                }
+
+                R.id.karya -> {
+                    replaceFragment(KaryaFragment())
                     true
                 }
 

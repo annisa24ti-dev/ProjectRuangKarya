@@ -1,4 +1,4 @@
-package com.example.ruangkarya.Message
+package com.example.ruangkarya.message
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -19,21 +19,32 @@ class MessageAdapter(
         convertView: View?,
         parent: ViewGroup
     ): View {
-        val binding = ItemMessageBinding.inflate(
-            LayoutInflater.from(context),
-            parent,
-            false
-        )
 
-        val view = binding.root
+        val binding: ItemMessageBinding
+        val view: View
+
+        if (convertView == null) {
+            binding = ItemMessageBinding.inflate(
+                LayoutInflater.from(context),
+                parent,
+                false
+            )
+            view = binding.root
+            view.tag = binding
+        } else {
+            view = convertView
+            binding = view.tag as ItemMessageBinding
+        }
+
         val data = messages[position]
-
-        Glide.with(context)
-            .load(data.avatarUrl)
-            .into(binding.avatarImg)
 
         binding.textSender.text = data.senderName
         binding.textMessage.text = data.messageText
+
+        Glide.with(context)
+            .load(data.avatarUrl)
+            .circleCrop()
+            .into(binding.avatarImg)
 
         view.setOnClickListener {
             Snackbar.make(
